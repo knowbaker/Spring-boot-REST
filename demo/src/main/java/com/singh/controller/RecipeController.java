@@ -1,10 +1,13 @@
 package com.singh.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.singh.entity.Recipe;
@@ -16,13 +19,23 @@ public class RecipeController {
 	@Autowired
 	private RecipeRespository repository;
 
-	@RequestMapping(value="/{recipeId}", method=RequestMethod.GET)
+	@GetMapping(value="/{recipeId}")
 	public Recipe getRecipe(@PathVariable long recipeId) {
 		return repository.findOne(recipeId);
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
-	public long addRecipe(@RequestBody Recipe recipe) {
-		return repository.save(recipe).getId();
+	@PostMapping
+	public Recipe addRecipe(@RequestBody Recipe recipe) {
+		return repository.save(recipe);
+	}
+	
+	@PutMapping
+	public Recipe updateRecipe(@RequestBody Recipe recipe) {
+		return repository.save(recipe);
+	}
+	
+	@PatchMapping
+	public Recipe patchRecipe(@RequestBody Recipe recipe) {
+		throw new UnsupportedOperationException();
 	}
 }
