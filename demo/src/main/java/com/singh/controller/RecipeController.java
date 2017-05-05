@@ -36,6 +36,6 @@ public class RecipeController {
 	
 	@PatchMapping
 	public Recipe patchRecipe(@RequestBody Recipe recipe) {
-		throw new UnsupportedOperationException();
+		throw new UnsupportedOperationException("Use PUT for now");
 	}
 }
