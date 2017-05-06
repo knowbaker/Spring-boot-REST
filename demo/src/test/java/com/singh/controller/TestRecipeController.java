@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import org.assertj.core.api.Condition;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,5 +55,11 @@ public class TestRecipeController {
 		assertThat(responseRecipe).isNotNull();
 		assertThat(responseRecipe).hasFieldOrPropertyWithValue("name", recipe.getName());
 		assertThat(responseRecipe).hasFieldOrPropertyWithValue("desc", recipe.getDesc());
+		assertThat(responseRecipe).doesNotHave(new Condition<Recipe>() {
+			@Override
+			public boolean matches(Recipe value) {
+				return value.getName() == null || value.getDesc() == null;
+			}
+		});
 	}
 }
