@@ -58,7 +58,7 @@ public class TestRecipeController {
 		assertThat(responseRecipe).doesNotHave(new Condition<Recipe>() {
 			@Override
 			public boolean matches(Recipe value) {
-				//Should I check id with recipeId?
+				//TODO: Should I check value.getId()?
 				return value.getName() == null || value.getDesc() == null;
 			}
 		});
