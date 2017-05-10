@@ -45,7 +45,7 @@ public class TestRecipeController {
 		recipe.setDesc("First Recipe");
 		long recipeId = repo.save(recipe).getId();
 		
-		URI uri = new URI("http://localhost:"+port+"/recipes/"+recipeId);
+		URI uri = new URI("/recipes/"+recipeId);
 		RequestEntity<Void> requestEntity = RequestEntity.get(uri).build();
 		ResponseEntity<Recipe> responseEntity = rest.withBasicAuth(user, pass).exchange(requestEntity, Recipe.class);
 		
