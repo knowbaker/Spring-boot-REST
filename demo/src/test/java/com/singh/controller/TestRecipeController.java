@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -64,8 +63,17 @@ public class TestRecipeController {
 	}
 	
 	@Test
-	public void testPost() {
-		//TODO: Finish me
+	public void testPost() throws URISyntaxException {
+		Recipe recipe = new Recipe();
+		recipe.setName("Recipe1");
+		recipe.setDesc("First Recipe");
+		
+		URI uri = new URI("/recipes/");
+		
+		ResponseEntity<Recipe> responseEntity = rest.withBasicAuth(user, pass).postForEntity(uri, recipe, Recipe.class);
+		
+		assertThat(responseEntity).isNotNull();
+		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.CREATED);//Fails - returns OK. Use responseEntity in ctrler to fix
 	}
 	
 	@Test
