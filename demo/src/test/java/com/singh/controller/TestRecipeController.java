@@ -39,15 +39,14 @@ public class TestRecipeController {
 	RecipeRespository repo;
 
 	@Test
-	public void test() throws URISyntaxException {
+	public void testGet() throws URISyntaxException {
 		Recipe recipe = new Recipe();
 		recipe.setName("Recipe1");
 		recipe.setDesc("First Recipe");
 		long recipeId = repo.save(recipe).getId();
 		
 		URI uri = new URI("/recipes/"+recipeId);
-		RequestEntity<Void> requestEntity = RequestEntity.get(uri).build();
-		ResponseEntity<Recipe> responseEntity = rest.withBasicAuth(user, pass).exchange(requestEntity, Recipe.class);
+		ResponseEntity<Recipe> responseEntity =rest.withBasicAuth(user, pass).getForEntity(uri, Recipe.class);
 		
 		assertThat(responseEntity).isNotNull();
 		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
