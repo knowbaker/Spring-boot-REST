@@ -65,6 +65,11 @@ public class TestRecipeController {
 	
 	@Test
 	public void testPost() {
-		//TODO
+		//TODO:
+	}
+	
+	@Test
+	public void testPut() {
+		
 	}
 }
