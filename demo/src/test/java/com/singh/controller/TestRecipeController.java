@@ -62,4 +62,9 @@ public class TestRecipeController {
 			}
 		});
 	}
+	
+	@Test
+	public void testPost() {
+		//TODO
+	}
 }
