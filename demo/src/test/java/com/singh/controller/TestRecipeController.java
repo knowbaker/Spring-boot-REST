@@ -77,7 +77,14 @@ public class TestRecipeController {
 	}
 	
 	@Test
-	public void testPut() {
+	public void testPut() throws URISyntaxException {
+		Recipe recipe = new Recipe();
+		recipe.setName("Recipe1");
+		recipe.setDesc("First Recipe");
+		
+		URI uri = new URI("/recipes/");
 
+		ResponseEntity<Recipe> postResponse = rest.withBasicAuth(user, pass).postForEntity(uri, recipe, Recipe.class);
+		assertThat(postResponse.getStatusCode()).isNotNull();
 	}
 }
