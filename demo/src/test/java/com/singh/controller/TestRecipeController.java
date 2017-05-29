@@ -45,7 +45,7 @@ public class TestRecipeController {
 		long recipeId = repo.save(recipe).getId();
 		
 		URI uri = new URI("/recipes/"+recipeId);
-		ResponseEntity<Recipe> responseEntity =rest.withBasicAuth(user, pass).getForEntity(uri, Recipe.class);
+		ResponseEntity<Recipe> responseEntity = rest.withBasicAuth(user, pass).getForEntity(uri, Recipe.class);
 		
 		assertThat(responseEntity).isNotNull();
 		assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
